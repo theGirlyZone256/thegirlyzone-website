@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="The GIRLYZONE - Women's Fashion Store offering dresses, jumpers, pants, and accessories">
+    <meta name="description" content="The GIRLYZONE - Women's Fashion Store.">
     
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -188,7 +188,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 10000;
+            z-index: 99999;
             opacity: 1;
             transition: opacity 0.5s ease-out;
             pointer-events: all;
@@ -264,7 +264,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 99998;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.5s ease;
@@ -391,32 +391,78 @@
             text-shadow: 0 0 8px var(--golden-yellow), 0 0 15px var(--golden-yellow);
         }
 
-        .filter-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .search-container {
+            position: relative;
+            margin-right: 10px;
         }
 
-        .price-filter {
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            width: 120px;
-        }
-
-        .filter-btn {
-            background-color: var(--whatsapp-green);
-            color: white;
-            border: none;
+        .search-bar {
             padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: opacity 0.3s;
+            border: 2px solid transparent;
+            border-radius: 20px;
+            width: 280px;
+            font-family: var(--poppins);
+            outline: none;
+            transition: all 0.3s;
+            box-shadow: 0 0 0 0 rgba(255, 0, 77, 0);
+            animation: searchGlow 2s infinite;
         }
 
-        .filter-btn:hover {
-            opacity: 0.9;
+        @keyframes searchGlow {
+            0% { box-shadow: 0 0 0 0 rgba(255, 0, 77, 0.7); }
+            50% { box-shadow: 0 0 0 4px rgba(255, 0, 77, 0.3); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 0, 77, 0); }
+        }
+
+        .search-bar:focus {
+            border-color: var(--primary-color);
+            animation: none;
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 99997;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .search-results {
+                position: fixed;
+                top: 250px;
+                left: 7px;
+                right: 7px;
+                z-index: 99997;
+                max-height: 60vh;
+                background: white;
+                border: 1px solid #eee;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            }
+        }
+
+        .search-result-item {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background 0.2s;
+            background: white;
+            z-index: 99999;
+        }
+
+        .search-result-item:hover {
+            background: #f8f0f5;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
         }
 
         /* Neck/Category Section */
@@ -481,6 +527,31 @@
             position: relative;
         }
 
+        .hot-category {
+            color: #ff4500;
+            font-weight: 700;
+            animation: hotPulse 2s infinite;
+        }
+
+        .hot-icon {
+            display: inline-block;
+            margin-right: 5px;
+            animation: fireFlicker 1s infinite alternate;
+        }
+
+        @keyframes hotPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); text-shadow: 0 0 8px rgba(255, 69, 0, 0.7); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fireFlicker {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+            25% { transform: scale(1.1) rotate(-5deg); opacity: 0.9; }
+            50% { transform: scale(1.05) rotate(5deg); opacity: 1; }
+            75% { transform: scale(1.15) rotate(0deg); opacity: 0.8; }
+        }
+
         .category-link:hover, .category-link.active {
             color: var(--primary-color);
         }
@@ -513,6 +584,20 @@
             box-shadow: var(--card-shadow);
             transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
+        }
+
+        .product-card {
+            transition: all 0.3s;
+        }
+
+        .product-card.highlight {
+            animation: highlightProduct 2s;
+        }
+
+        @keyframes highlightProduct {
+            0% { box-shadow: 0 0 0 0 rgba(255, 0, 77, 0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(255, 0, 77, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 0, 77, 0); }
         }
 
         .product-card:hover {
@@ -824,7 +909,7 @@
         .back-to-top {
             position: fixed;
             bottom: 30px;
-            right: 30px;
+            right: 25px;
             width: 50px;
             height: 50px;
             background-color: var(--primary-color);
@@ -877,71 +962,79 @@
 
         /* Responsive Adjustments */
         @media (max-width: 768px) {
+            /* Main header container */
             .head-section {
                 flex-direction: column;
-                gap: 15px;
-            }
-            
-            .logo-container {
-                justify-content: center;
-                gap: 3px;
-            }
-            
-            .header-controls {
-                flex-direction: column;
-                width: 100%;
-            }
-            
-            .filter-container {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .price-filter {
-                flex-grow: 1;
-            }
-            
-            .product-actions {
-                flex-direction: column;
-            }
-            
-            .back-to-top {
-                bottom: 20px;
-                right: 20px;
-                width: 40px;
-                height: 40px;
-            }
-
-            .logo-container {
-                flex-direction: column;
                 align-items: center;
-                gap: 3px;
+                padding: 25px 7px;
+                gap: px;
             }
 
-            .category-banner.sticky {
-                position: fixed;
-                top: 0;
+            /* Container for the logos and slogan */
+            .logo-container {
+                display: flex;
+                justify-content: center; /* Centers the logos horizontally */
+                align-items: center;
+                flex-wrap: wrap; /* Allows the slogan to drop below */
+                gap: 10px; /* Sets the 13px space between the two logos */
+                position: relative;
+            }
+
+            .logo-separator {
+                height: 80px;
+                width: 3.5px;
+                background-color: #747373;
+                border-radius: 5px;
+                position: relative;
+                top: 6.5px;
+            }
+
+            /* Target the shopping bag logo image */
+            .logo img {
+                height: 94px; /* Adjust size */
+            }
+
+            /* Target the "The GirlyZone" text logo */
+            .logo h1 {
+                font-size: 1.7rem;
+                margin: 0; /* Ensures no extra space from h1 */
+                transform: translate(-50%, -50%);
+            }
+
+            /* Slogan positioning */
+            .slogan {
+                width: 90%;
+                text-align: center;
+                margin-top: 0.2px;
+                font-size: 1.2rem;
+            }
+
+            /* Header controls */
+            .header-controls {
                 width: 100%;
-                background-color: var(--primary-bg-color);
-                z-index: 99;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
             }
 
-            /* Header animation for mobile */
-            .head-section.hidden {
-                transform: translateY(-100%);
-                transition: transform 0.3s ease-in-out;
+            .about-us-container {
+                text-align: center;
+                margin-bottom: 5px;
             }
 
-            /* Make category banner sticky on mobile */
-            .neck-section.sticky {
-                position: fixed;
-                top: 0;
-                width: 100%;
-                z-index: 500;
-                background-color: var(--background-color);
-                box-shadow: var(--card-shadow);
+            .search-container {
+                width: 90%;
             }
-                
+
+            .search-bar {
+                width: 103%;
+            }
+
+            /* About Us popup */
+            .modal-content {
+                max-height: 70vh;
+                overflow-y: auto;
+            }
         }
     </style>
 </head>
@@ -953,9 +1046,10 @@
 
     <div class="modal welcome-popup">
         <div class="modal-content">
-            <h2>Welcome to The GirlyZone!</h2>
-            <p>Dear customer, all your orders are going to be processed through the <strong>WhatsApp</strong> platform in order to serve you with a personal touch💕</p>
-            <button class="modal-btn welcome-btn">READY TO SHOP!</button>
+            <h2>Welcome to theGirlyZone!</h2>
+            <p>⚠Dear customer, all your orders are going to be processed through <strong>Your WhatsApp</strong> platform in order to serve you with our personal touch💕</p>
+            <p><strong>You can tap each image to uncover a gallery of more stunning visuals behind it!🌟</strong></p>
+            <button class="modal-btn welcome-btn">LET'S GO SHOPPING!</button>
         </div>
     </div>
 
@@ -977,6 +1071,7 @@
                 <div class="logo">
                     <img src="logo.png" alt="The GirlyZone primary logo" class="logo-img">
                 </div>
+                <span class="logo-separator"></span>
                 <div class="logo">
                     <img src="logo3.png" alt="The GirlyZone's secondary logo" class="logo-img">
                 </div>
@@ -984,10 +1079,12 @@
             </div>
             
             <div class="header-controls">
-                <a href="#about" class="about-us-link">About Us</a>
-                <div class="filter-container">
-                    <input type="number" class="price-filter" placeholder="Max Price" min="0" aria-label="Filter by maximum price">
-                    <button class="filter-btn">Filter</button>
+                <div class="about-us-container">
+                    <a href="#about" class="about-us-link">About Us</a>
+                </div>
+                <div class="search-container">
+                    <input type="text" class="search-bar" placeholder="Search products or filter by Price..." aria-label="Search products">
+                    <div class="search-results"></div>
                 </div>
             </div>
         </div>
@@ -1035,13 +1132,13 @@
         </div>
         <div class="feet-grid">
             <div class="feet-section contact-info">
-                <h3>Contact Us</h3>
+                <h3>Call/WhatsApp</h3>
                 <p><i class="fas fa-phone"></i></p>
                 <p><a href="tel:0777645472">0777645472</a></p>
                 <p><a href="tel:0756588826">0756588826</a></p>
                 <p><a href="tel:0752066276">0752066276</a></p>
                 <p><i class="fas fa-envelope"></i> <a href="mailto:thegirlyzone098@gmail.com">thegirlyzone098@gmail.com</a></p>
-                <p><i class="fas fa-map-marker-alt"></i> <a href="https://maps.google.com/maps?q=Kampala,%20Uganda" target="_blank" rel="noopener noreferrer">Kampala, Uganda</a></p>
+                <p><i class="fas fa-map-marker-alt"></i> <a href="https://maps.app.goo.gl/R4P4RMqVB5s1tzvV8" target="_blank" rel="noopener noreferrer">Top City Plaza opp Ham Shopping grounds, Shop no. <strong>LT.78</strong></a></p>
             </div>
             
             <div class="feet-section social-section">
@@ -1065,17 +1162,16 @@
             
             <div class="feet-section hours-section">
                 <h3>Working Hours</h3>
-                <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
-                <p>Saturday: 9:00 AM - 4:00 PM</p>
-                <p>Sunday: 10:00 AM - 2:00 PM</p>
+                <p>Monday - Saturday: 7:30 AM - 7:30 PM</p>
+                <p>Sunday: 11:00 AM - 6:30 PM</p>
                 <div class="alert-message">
-                    <p>Place your orders anytime, but they will be processed during our working hours.</p>
+                    <p><strong>Our Dear Customer</strong>, you can place your orders anytime, but they will kindly be processed during our working hours.</p>
                 </div>
             </div>
             
             <div class="feet-section credits-section">
                 <h3>Website Info</h3>
-                <p>Designed & Maintained by:</p>
+                <p>Created, Designed & Maintained by: <strong>Marvin'sDesignHouse</strong></p>
                 <p><i class="fas fa-phone"></i> <a href="tel:0706338694">0706 338694</a>, <a href="tel:0780537744">0780537744</a></p>
                 <p><i class="fas fa-envelope"></i> <a href="mailto:marvinsdesignhouse@gmail.com">marvinsdesignhouse@gmail.com</a></p>
                 <p class="compelling-message">Get your stunning website today and elevate your business!</p>
@@ -1102,116 +1198,289 @@
             {
                 id: 1,
                 title: "Floral Summer Dress",
-                description: "Beautiful floral print dress perfect for summer occasions.",
-                price: 45000,
-                images: ["images/d1.webp", "images/d2.webp", "images/d3.webp"],
-                categories: ["HOT", "Dresses"],
+                description: "This light, flowery romper is perfect for a beautiful day out.",
+                price: 35000,
+                images: ["images/d1.webp", "images/d2.webp", "images/d1a.webp", "images/d2a.webp", "images/d1b.webp", "images/d2b.webp", "images/d1c.webp", "images/d2c.webp", "images/d1d.webp", "images/d2d.webp", "images/d1e.webp", "images/d2e.webp", "images/d1f.webp", "images/d2f.webp", "images/d2g.webp"],
+                categories: ["hot", "dresses"],
                 isHot: true
             },
             {
                 id: 2,
-                title: "High-Waisted Skinny Jeans",
-                description: "Comfortable and stylish high-waisted jeans that flatter every figure.",
-                price: 55000,
-                images: ["images/sh4c.webp"],
-                categories: ["Pants"],
+                title: "The Blue Day Dress...",
+                description: "This light blue dress with an open back is perfect for any special occasion.",
+                price: 30000,
+                images: ["images/d3.webp", "images/d3a.webp", "images/d3b.webp", "images/d3c.webp", "images/d3d.webp", "images/d3e.webp", "images/d3f.webp"],
+                categories: ["dresses"],
                 isHot: false
             },
             {
                 id: 3,
-                title: "Oversized Knit Sweater",
-                description: "Cozy and fashionable knit sweater for those chilly days.",
-                price: 60000,
-                images: ["images/d2.webp"],
-                categories: ["Tops", "Jumpers"],
+                title: "The White Sweater.",
+                description: "This comfy white sweater is a good fit for cool days.",
+                price: 20000,
+                images: ["images/j1.webp", "images/j1a.webp", "images/j1b.webp", "images/j1c.webp"],
+                categories: ["tops", "Jumpers"],
                 isHot: false
             },
             {
                 id: 4,
-                title: "Elegant Jumpsuit",
-                description: "A sleek and elegant black jumpsuit for a sophisticated look.",
-                price: 75000,
-                images: ["images/ts3a.webp"],
-                categories: ["Jumpers"],
-                isHot: true
+                title: "The Orange Hoodie.",
+                description: "This bright orange hoodie is a great way to stand out from the crowd.",
+                price: 25000,
+                images: ["images/j2.webp", "images/j2a.webp", "images/j2b.webp"],
+                categories: ["Jumpers", "tops"],
+                isHot: false
             },
             {
                 id: 5,
-                title: "Leather Crossbody Bag",
-                description: "A versatile leather bag perfect for carrying your essentials.",
-                price: 35000,
-                images: ["images/d3.webp"],
-                categories: ["Accessories"],
+                title: "The Comfy (Casual)Pants.",
+                description: "These simple, loose-fitting pants are a comfortable choice for any day.",
+                price: 30000,
+                images: ["images/pc1.webp", "images/pc1a.webp", "images/pc1b.webp", "images/pc1c.webp"],
+                categories: ["pants"],
                 isHot: false
             },
             {
                 id: 6,
-                title: "Classic White Sneakers",
-                description: "Simple yet stylish white sneakers that match any outfit.",
-                price: 40000,
-                images: ["images/sh4c.webp"],
-                categories: ["Accessories"],
+                title: "The Dash Pants...",
+                description: "These comfortable pants with a cool pattern and side stripes are great for a relaxed look.",
+                price: 25000,
+                images: ["images/pc2a.webp", "images/pc2b.webp", "images/pc2c.webp"],
+                categories: ["pants"],
                 isHot: false
             },
             {
                 id: 7,
-                title: "Summer Crop Top",
-                description: "A trendy crop top ideal for sunny days and casual outings.",
+                title: "The Paperbag Pants",
+                description: "These stylish grey pants with a high waist and matching belt are great for a work or dressy look.",
                 price: 25000,
-                images: ["images/t6.webp", "images/t2.webp", "images/t3.webp"],
-                categories: ["Tops"],
+                images: ["images/po2.webp", "images/po2a.webp", "images/po2b.webp", "images/po2c.webp"],
+                categories: ["pants"],
                 isHot: false
             },
             {
                 id: 8,
-                title: "Ofiice Pants",
-                description: "Just a good office day.",
-                price: 25000,
-                images: ["images/sh4.webp", "images/sh3a.webp", "images/sh4a.webp", "images/sh4c.webp"],
-                categories: ["Office"],
-                isHot: false
-            },
-            {
-                id: 9,
-                title: "Distressed Denim Shorts",
-                description: "Fashionable distressed shorts for a cool, casual summer vibe.",
-                price: 30000,
-                images: ["images/t3.webp"],
-                categories: ["Pants"],
-                isHot: false
-            },
-            {
-                id: 10,
-                title: "Cute Printed T-shirt",
-                description: "A soft, comfortable t-shirt with a fun graphic print.",
-                price: 20000,
-                images: ["images/t10.webp", "images/ts2.webp", "images/ts3.webp"],
-                categories: ["Tote Bags"],
-                isHot: false
-            },
-            {
-                id: 11,
-                title: "Full Cotton Shorts",
-                description: "Soft, and very comfortable shorts.",
-                price: 25000,
-                images: ["images/sh7.webp", "images/sh7a.webp", "images/sh7b.webp", "images/sh8.webp", "images/sh8c.webp", "images/sh8d.webp"],
-                categories: ["Shorts"],
+                title: "The Smart Office-Shorts...(Available in black, maroon, and white)",
+                description: "These smart, tailored shorts are a great choice for dressing up or down on a warm day.",
+                price: 40000,
+                images: ["images/sh4.webp", "images/sh3a.webp", "images/sh1a.webp", "images/sh2b.webp", "images/sh3.webp", "images/sh2c.webp", "images/sh4c.webp"],
+                categories: ["shorts", "hot"],
                 isHot: true
             },
             {
-                id: 12,
-                title: "Beestie Jersey",
-                description: "Show your friendship pride with the Bestie Jersey!",
+                id: 9,
+                title: "The Chain Shorts..(Available in blue, brown and black)",
+                description: "These comfortable shorts with a cool chain pattern are perfect for a casual and trendy look.",
                 price: 25000,
-                images: ["images/ts8.webp", "images/ts8a.webp", "images/ts8b.webp"],
+                images: ["images/sh5.webp", "images/sh6.webp", "images/sh7.webp", "images/sh8.webp", "images/sh6a.webp", "images/sh5b.webp", "images/sh5a.webp", "images/sh7a.webp", "images/sh7b.webp", "images/sh8a.webp", "images/sh8b.webp", "images/sh8c.webp", "images/sh8d.webp"],
+                categories: ["shorts", "hot"],
+                isHot: true
+            },
+            {
+                id: 10,
+                title: "Practicle Totes.",
+                description: "Practicality at its peak; covered in style.",
+                price: 20000,
+                images: ["images/t10.webp", "images/ts2.webp", "images/ts3.webp"],
+                categories: ["tote bags", "hot"],
+                isHot: true
+            },
+            {
+                id: 11,
+                title: "The Pleated Skirt.",
+                description: "This light-colored skirt with nice pleats is a perfect fit for a simple, smart look.",
+                price: 20000,
+                images: ["images/sk6.webp", "images/sk6a.webp", "images/sk6b.webp"],
+                categories: ["skirts"],
+                isHot: false
+            },
+            {
+                id: 12,
+                title: "The Bodycon Skirt.",
+                description: "This pink, tight-fitting skirt is a good choice for showing off your curves.",
+                price: 25000,
+                images: ["images/sk8.webp", "images/sk8a.webp"],
+                categories: ["skirts"],
+                isHot: false
+            },
+            {
+                id: 13,
+                title: "The Spotted Skirt..",
+                description: "This light, spotted skirt is a fun and easy choice for a nice day out.",
+                price: 20000,
+                images: ["images/sk4a.webp", "images/sk4.webp"],
+                categories: ["skirts"],
+                isHot: false
+            },
+            {
+                id: 14,
+                title: "The Tie-up Skirt.",
+                description: "This green skirt with a stylish front tie is perfect for a fashionable outing.",
+                price: 20000,
+                images: ["images/sk5.webp", "images/sk5a.webp", "images/sk5b.webp"],
+                categories: ["skirts", "hot"],
+                isHot: true
+            },
+            {
+                id: 15,
+                title: "The 'shawty' top",
+                description: "This 'shawty' pink top with a shiny pattern in the middle is perfect for a stylish and comfy look.",
+                price: 20000,
+                images: ["images/tp4.webp", "images/tp4a.webp"],
+                categories: ["tops"],
+                isHot: false
+            },
+            {
+                id: 16,
+                title: "The Cloud Shirt.",
+                description: "This light blue button-up shirt is a simple yet smart choice for any occasion.",
+                price: 10000,
+                images: ["images/tp3.webp"],
+                categories: ["tops"],
+                isHot: false
+            },
+            {
+                id: 17,
+                title: "The Black Denim Skirt.",
+                description: "This ripped black denim skirt is a cool and edgy choice for a casual look.",
+                price: 20000,
+                images: ["images/sk9.webp", "images/sk9c.webp", "images/sk9d.webp",, "images/sk9e.webp", "images/sk9f.webp"],
+                categories: ["skirts"],
+                isHot: false
+            },
+            {
+                id: 18,
+                title: "The Polo Top.",
+                description: "This pink and white top with a nice collar is a comfortable and classic choice.",
+                price: 20000,
+                images: ["images/tp1.webp", "images/tp1a.webp"],
+                categories: ["tops", "hot"],
+                isHot: true
+            },
+            {
+                id: 19,
+                title: "The V-Neck Top.",
+                description: "This light brown top with a V-neck and a button is a simple and nice fit for any day.",
+                price: 20000,
+                images: ["images/tp5.webp", "images/tp5a.webp"],
+                categories: ["tops"],
+                isHot: false
+            },
+            {
+                id: 20,
+                title: "The Plain Crop Top...",
+                description: "This simple, plain crop top is a good fit for a casual and easy look.",
+                price: 20000,
+                images: ["images/tp6.webp", "images/tp6a.webp"],
+                categories: ["tops"],
+                isHot: false
+            },
+            {
+                id: 21,
+                title: "The Pleated Green Top.",
+                description: "This light green top with a pleated design is a great choice for a simple yet stylish look.",
+                price: 20000,
+                images: ["images/tp8.webp", "images/tp8a.webp"],
+                categories: ["tops"],
+                isHot: false
+            },
+            {
+                id: 22,
+                title: "The Holo Top.",
+                description: "This light black top with small, colorful holes is perfect for a fun and airy look.",
+                price: 20000,
+                images: ["images/tp7.webp", "images/tp7a.webp"],
+                categories: ["tops"],
+                isHot: false
+            },
+            {
+                id: 23,
+                title: "The (Just Do It) Tee.",
+                description: "This light shirt with sporty stripes and the (Just Do It) slogan is a great fit for a simple, active look.",
+                price: 25000,
+                images: ["images/ts2.webp", "images/ts2a.webp"],
                 categories: ["t-shirts"],
                 isHot: false
+            },
+            {
+                id: 24,
+                title: "The Lifestyle Tee.",
+                description: "This black shirt with a 'lifestyle' print and number 15 is a simple and cool fit for a sporty look.",
+                price: 25000,
+                images: ["images/ts1.webp", "images/ts1a.webp", "images/ts1b.webp"],
+                categories: ["t-shirts"],
+                isHot: false
+            },
+
+            {
+                id: 25,
+                title: "The Sunshine Top.",
+                description: "This bright yellow top with a beautiful leaf pattern is perfect for a warm and happy look.",
+                price: 10000,
+                images: ["images/tp9.webp", "images/tp9a.webp", "images/tp9b.webp", "images/tp9c.webp", "images/tp9d.webp"],
+                categories: ["tops"],
+                isHot: false
+            },
+            {
+                id: 26,
+                title: "The 'HELLO' Tee",
+                description: " This light brown shirt with a 'HELLO' print and number 2 is a cool and friendly choice for a casual look.",
+                price: 25000,
+                images: ["images/ts3.webp", "images/ts3a.webp", "images/ts3b.webp"],
+                categories: ["t-shirts"],
+                isHot: false
+            },
+            {
+                id: 27,
+                title: "The 'RESPECT' Tee",
+                description: "This white shirt with stripes and a 'RESPECT' print is a simple, cool way to make a statement.",
+                price: 25000,
+                images: ["images/ts6.webp", "images/ts6a.webp", "images/ts6b.webp"],
+                categories: ["t-shirts", "hot"],
+                isHot: true
+            },
+            {
+                id: 28,
+                title: "The 'ORIGINAL' Tee.",
+                description: "This light pink shirt with an 'ORIGINAL' print is a simple, cool choice for a street style look.",
+                price: 25000,
+                images: ["images/ts4.webp", "images/ts4a.webp"],
+                categories: ["t-shirts"],
+                isHot: false
+            },
+            {
+                id: 29,
+                title: "The 'New York' Tee.",
+                description: "This simple white shirt with a 'New York' print is a classic choice for a casual day.",
+                price: 25000,
+                images: ["images/ts7.webp", "images/ts7a.webp"],
+                categories: ["t-shirts"],
+                isHot: false
+            },
+            {
+                id: 30,
+                title: "The 'Thank You' Tee",
+                description: "This light green shirt with a 'THANK YOU' print and the number 28 is a simple and positive choice.",
+                price: 25000,
+                images: ["images/ts9.webp", "images/ts9a.webp", "images/ts9b.webp"],
+                categories: ["t-shirts"],
+                isHot: false
+            },
+            {
+                id: 31,
+                title: "Beestie Jersey t-shirt.",
+                description: "This light-colored shirt with a 'MY BESTIE' print is a fun and simple choice for you and your best friend.",
+                price: 25000,
+                images: ["images/ts8.webp", "images/ts8a.webp", "images/ts8b.webp"],
+                categories: ["t-shirts", "hot"],
+                isHot: true
             },
                 
         ];
 
         // Global state
         window.currentCategory = "All";
+        window.searchTimeout = null;
         window.currentGalleryProduct = null;
         window.currentSlideIndex = 0;
         window.cart = [];
@@ -1231,8 +1500,6 @@
         const galleryPrev = document.querySelector('.gallery-prev');
         const galleryNext = document.querySelector('.gallery-next');
         const galleryClose = document.querySelector('.gallery-close');
-        const priceFilter = document.querySelector('.price-filter');
-        const filterBtn = document.querySelector('.filter-btn');
         const backToTopBtn = document.querySelector('.back-to-top');
         const cartNotification = document.querySelector('.cart-notification');
         const floatingCart = document.querySelector('.floating-cart');
@@ -1243,12 +1510,11 @@
         const cartTotalSpan = document.querySelector('#cartTotal');
         const checkoutBtn = document.querySelector('.checkout-btn');
         const emptyCartMessage = document.querySelector('.empty-cart-message');
-
         /**
          * Renders the category list in the navigation.
          */
         function renderCategories() {
-            const categories = ["All", "HOT"];
+            const categories = ["All"];
             products.forEach(product => {
                 product.categories.forEach(category => {
                     if (!categories.includes(category)) {
@@ -1261,7 +1527,15 @@
             categories.forEach(category => {
                 const li = document.createElement('li');
                 li.className = 'category-item';
-                li.innerHTML = `<a href="#" class="category-link" data-category="${category}">${category}</a>`;
+                if (category === "hot") {
+                    li.innerHTML = `
+                        <a href="#" class="category-link hot-category" data-category="${category}">
+                            <span class="hot-icon">🔥</span>${category.toUpperCase()}
+                        </a>
+                    `;
+                } else {
+                    li.innerHTML = `<a href="#" class="category-link" data-category="${category}">${category}</a>`;
+                }
                 categoryList.appendChild(li);
             });
 
@@ -1273,12 +1547,10 @@
          * Renders the product cards based on the current category and price filter.
          */
         function renderProducts() {
-            const maxPrice = parseFloat(priceFilter.value) || Infinity;
             const filteredProducts = products.filter(product => {
                 const passesCategory = window.currentCategory === "All" || product.categories.includes(window.currentCategory);
                 const passesHot = window.currentCategory === "HOT" ? product.isHot : true;
-                const passesPrice = product.price <= maxPrice;
-                return passesCategory && passesHot && passesPrice;
+                return passesCategory && passesHot;
             });
 
             productsGrid.innerHTML = '';
@@ -1484,6 +1756,55 @@
          * Initializes the page by simulating a loading delay,
          * rendering categories and products, and setting up event listeners.
          */
+        function displaySearchResults(products) {
+            const searchResults = document.querySelector('.search-results');
+            searchResults.innerHTML = '';
+            
+            if (products.length === 0) {
+                searchResults.innerHTML = '<div class="search-result-item">No products found</div>';
+            } else {
+                products.forEach(product => {
+                    const item = document.createElement('div');
+                    item.className = 'search-result-item';
+                    item.innerHTML = `
+                        <strong>${product.title}</strong><br>
+                        <small>UGX ${product.price.toLocaleString()} • ${product.categories.join(', ')}</small>
+                    `;
+                    item.addEventListener('click', () => {
+                        window.currentCategory = "All";
+                        document.querySelectorAll('.category-link').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        document.querySelector('.category-link[data-category="All"]').classList.add('active');
+                        renderProducts();
+                        
+                        // Scroll to product
+                        const productElement = document.querySelector(`.product-card[data-id="${product.id}"]`);
+                        if (productElement) {
+                            productElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            productElement.classList.add('highlight');
+                            setTimeout(() => {
+                                productElement.classList.remove('highlight');
+                            }, 2000);
+                        }
+                        
+                        document.querySelector('.search-bar').value = '';
+                        searchResults.style.display = 'none';
+                    });
+                    searchResults.appendChild(item);
+                });
+            }
+            
+            searchResults.style.display = 'block';
+        }
+
+        // Close search results when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                document.querySelector('.search-results').style.display = 'none';
+            }
+        });
+
         function init() {
             setTimeout(() => {
                 loadingAnimation.classList.add('hidden');
@@ -1494,6 +1815,84 @@
             renderProducts();
             renderCart();
             setupEventListeners();
+            
+            // Initialize search functionality
+            const searchBar = document.querySelector('.search-bar');
+            searchBar.addEventListener('input', handleSearch);
+        }
+
+        function handleSearch(e) {
+            clearTimeout(window.searchTimeout);
+            
+            window.searchTimeout = setTimeout(() => {
+                const searchTerm = e.target.value.toLowerCase().trim();
+                const isPriceFilter = /^\d+$/.test(searchTerm); // Check if input is only digits
+                
+                if (searchTerm === '') {
+                    document.querySelector('.search-results').style.display = 'none';
+                    renderProducts(); // Reset to normal view
+                    return;
+                }
+
+                if (isPriceFilter) {
+                    const price = parseInt(searchTerm);
+                    let filteredProducts = products.filter(product => product.price <= price);
+                    
+                    // Filter within current category
+                    if (window.currentCategory !== "All" && window.currentCategory !== "HOT") {
+                        filteredProducts = filteredProducts.filter(product => 
+                            product.categories.includes(window.currentCategory)
+                        );
+                    } else if (window.currentCategory === "HOT") {
+                        filteredProducts = filteredProducts.filter(product => product.isHot);
+                    }
+                    
+                    // Temporarily override renderProducts to show price-filtered results
+                    const originalRender = window.renderProducts;
+                    window.renderProducts = function() {
+                        productsGrid.innerHTML = '';
+                        if (filteredProducts.length === 0) {
+                            productsGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: #888; margin-top: 50px;">No products found for the selected price range.</p>';
+                            return;
+                        }
+                        
+                        filteredProducts.forEach(product => {
+                            const card = document.createElement('div');
+                            card.className = 'product-card';
+                            card.dataset.id = product.id;
+                            
+                            card.innerHTML = `
+                                ${product.isHot ? '<span class="hot-badge">🔥</span>' : ''}
+                                <img src="${product.images[0]}" alt="${product.title}" class="product-image" loading="lazy">
+                                <div class="product-info">
+                                    <h3 class="product-title">${product.title}</h3>
+                                    <p class="product-description">${product.description}</p>
+                                    <p class="product-price">UGX ${product.price.toLocaleString()}</p>
+                                    <div class="product-actions">
+                                        <button class="action-btn add-to-cart-btn" data-id="${product.id}">Add to Cart</button>
+                                        <button class="action-btn order-now-btn" data-id="${product.id}">Order Now</button>
+                                    </div>
+                                </div>
+                            `;
+                            productsGrid.appendChild(card);
+                        });
+                    };
+                    
+                    window.renderProducts();
+                    window.renderProducts = originalRender; // Restore original function
+                    document.querySelector('.search-results').style.display = 'none';
+                } else {
+                    const results = products.filter(product => {
+                        return (
+                            product.title.toLowerCase().includes(searchTerm) ||
+                            product.description.toLowerCase().includes(searchTerm) ||
+                            product.price.toString().includes(searchTerm) ||
+                            product.categories.some(cat => cat.toLowerCase().includes(searchTerm))
+                        );
+                    });
+                    displaySearchResults(results);
+                }
+            }, 300);
         }
         
         /**
@@ -1584,15 +1983,7 @@
             }
         }
         
-        filterBtn.addEventListener('click', () => {
-            renderProducts();
-        });
-        
-        priceFilter.addEventListener('keyup', (e) => {
-            if (e.key === 'Enter') {
-                renderProducts();
-            }
-        });
+
         
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
