@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1089,7 +1090,7 @@
         <div class="modal-content">
             <h2>Welcome to theGirlyZone!</h2>
             <p>⚠Dear customer, all your orders are going to be processed through <strong>Your WhatsApp</strong> platform in order to serve you with our personal touch💕</p>
-            <p><strong>You can tap each image to uncover a gallery of more stunning visuals behind it!🌟</strong></p>
+            <p><strong>You can tap each image to uncover a gallery of more stunning visuals!🌟</strong></p>
             <button class="modal-btn welcome-btn">LET'S GO SHOPPING!</button>
         </div>
     </div>
@@ -1240,6 +1241,14 @@
     <script>
         // Product Data
         const products = [
+            { id: 33, title: "The Sculpting Ribbed Set.", 
+            description: "Experience ultimate comfort and confidence in every move.", price: 35000, 
+            images: ["images/2pc.webp", "images/2pca.webp", "images/2pcb.webp", "images/2pcc.webp", "images/2pcd.webp"], 
+            categories: ["hot", "2 piece"], isHot: true },
+            { id: 34, title: "The Chic Commuter Tote.", 
+            description: "Effortless style and unbeatable functionality for your daily journey.", price: 40000, 
+            images: ["images/tb19.webp", "images/tb19a.webp", "images/tb19b.webp", "images/tb19c.webp", "images/tb19d.webp"], 
+            categories: ["tote bags", "hot"], isHot: true },
             { id: 1, title: "Floral Summer Dress(Available in green, pink and blue)", 
             description: "This light, flowery romper is perfect for a beautiful day out.", price: 35000, 
             images: ["images/d1.webp", "images/d2.webp", "images/d1a.webp", "images/d2a.webp", "images/d1b.webp", "images/d2b.webp", "images/d1c.webp", "images/d2c.webp", "images/d1d.webp", "images/d2d.webp", "images/d1e.webp", "images/d2e.webp", "images/d1f.webp", "images/d2f.webp", "images/d2g.webp"], 
@@ -1364,6 +1373,82 @@
             description: "Ready for your next Adventure!", price: 25000, 
             images: ["images/tb1c.webp", "images/tb1.webp", "images/tb1a.webp"], 
             categories: ["tote bags"], isHot: false },
+            { id: 35, title: "The Sculpting Ribbed Set.", 
+            description: "Experience ultimate comfort and confidence in every move.", price: 35000, 
+            images: ["images/2pc2.webp", "images/2pc2a.webp", "images/2pc2b.webp", "images/2pc2c.webp", "images/2pc2d.webp"], 
+            categories: ["2 piece", "hot"], isHot: true },
+            { id: 36, title: "The Sculpting Ribbed Set.", 
+            description: "Experience ultimate comfort and confidence in every move.", price: 35000, 
+            images: ["images/2pc3.webp", "images/2pc3a.webp", "images/2pc3b.webp", "images/2pc3c.webp", "images/2pc3d.webp", "images/2pc3e.webp", "images/2pc3f.webp"], 
+            categories: ["2 piece", "hot"], isHot: true },
+            { id: 37, title: "The Executive Tote(Available in black and brown).", 
+            description: "Classic style and timeless elegance for the modern professional.", price: 40000, 
+            images: ["images/tb2.webp", "images/tb2a.webp"], 
+            categories: ["tote bags"], isHot: false },
+            { id: 38, title: "The Positivity Pal Tote", 
+            description: "Spread kindness and carry your essentials in style.", price: 40000, 
+            images: ["images/tb7.webp", "images/tb7a.webp", "images/tb7b.webp", "images/tb7c.webp"], 
+            categories: ["tote bags"], isHot: false },
+            { id: 39, title: "The Lucky Strike Tote", 
+            description: "Carry your essentials and keep the smile all day.", price: 35000, 
+            images: ["images/tb8.webp", "images/tb8a.webp", "images/tb8b.webp", "images/tb8c.webp", "images/tb8d.webp"], 
+            categories: ["tote bags"], isHot: false },
+            { id: 40, title: "The Go-With-Me Tote", 
+            description: "The perfect partner for every journey and every style.", price: 25000, 
+            images: ["images/tb6.webp", "images/tb6a.webp"], 
+            categories: ["tote bags"], isHot: false },
+            { id: 41, title: "The Purr-fect Companion Tote", 
+            description: "The most adorable way to carry everything you need.", price: 25000, 
+            images: ["images/tb5.webp", "images/tb5a.webp", "images/tb5b.webp", "images/tb5c.webp", "images/tb5d.webp"], 
+            categories: ["tote bags"], isHot: false },
+            { id: 42, title: " The Mythical Creature Tote.", 
+            description: "Carry your dreams in this magically charming tote.", price: 25000, 
+            images: ["images/tb3.webp", "images/tb3a.webp", "images/tb3b.webp", "images/tb3c.webp", "images/tb3d.webp"], 
+            categories: ["tote bags"], isHot: false },
+            { id: 43, title: "The Pastel Adventure Bag.", 
+            description: "Carry your essentials in a bag as cute as you are.", price: 35000, 
+            images: ["images/tb4.webp", "images/tb4a.webp", "images/tb4b.webp", "images/tb4c.webp"], 
+            categories: ["tote bags"], isHot: false },
+            { id: 44, title: "The Kawaii Companion Bag.", 
+            description: "A charming companion for your sweetest adventures.", price: 35000, 
+            images: ["images/tb12.webp", "images/tb12a.webp", "images/tb12b.webp", "images/tb12c.webp", "images/tb12d.webp"], 
+            categories: ["tote bags"], isHot: false },
+            { id: 45, title: "The Happy Day Tote.", 
+            description: "A burst of sunshine for every outfit and every day.", price: 25000, 
+            images: ["images/tb11.webp", "images/tb11a.webp", "images/tb11b.webp", "images/tb11c.webp"], 
+            categories: ["tote bags"], isHot: false },
+            { id: 46, title: "The Athleisure Tote.", 
+            description: "The perfect blend of athletic style and everyday function.", price: 35000, 
+            images: ["images/tb10.webp", "images/tb10a.webp", "images/tb10b.webp", "images/tb10c.webp"], 
+            categories: ["tote bags"], isHot: false },
+            { id: 47, title: "The Happy Pups Tote", 
+            description: "A daily dose of happiness to carry wherever you go.", price: 35000, 
+            images: ["images/tb9.webp", "images/tb9a.webp", "images/tb9b.webp"], 
+            categories: ["tote bags"], isHot: false },
+            { id: 48, title: "The Anime Commuter Tote..", 
+            description: "Carry your fandom with you, organized and in style.", price: 40000, 
+            images: ["images/tb15.webp", "images/tb15a.webp", "images/tb15b.webp", "images/tb15c.webp"], 
+            categories: ["tote bags", "hot"], isHot: true },
+            { id: 49, title: "The Classic Weave Tote.", 
+            description: "Sophisticated style and timeless design for every occasion.", price: 35000, 
+            images: ["images/tb14.webp", "images/tb14a.webp", "images/tb14b.webp", "images/tb14c.webp"], 
+            categories: ["tote bags", "hot"], isHot: true },
+            { id: 50, title: "The Alpine Adventure Tote.", 
+            description: " Your perfect companion for every trail and every journey.", price: 45000, 
+            images: ["images/tb13.webp", "images/tb13a.webp", "images/tb13b.webp", "images/tb13c.webp"], 
+            categories: ["tote bags"], isHot: false },
+            { id: 51, title: " The Cloud Sandstone Tote.", 
+            description: "Where sleek design meets daily convenience, elevating every look.", price: 45000, 
+            images: ["images/tb18.webp", "images/tb18a.webp"], 
+            categories: ["tote bags"], isHot: false },
+            { id: 52, title: "The Stellar Urban Bag.", 
+            description: "The perfect blend of street style and practical design.", price: 45000, 
+            images: ["images/tb17.webp", "images/tb17a.webp", "images/tb17b.webp"], 
+            categories: ["tote bags"], isHot: false },
+            { id: 53, title: "The Cloud Commuter.", 
+            description: " Effortless style and unbeatable functionality for your daily journey.", price: 45000, 
+            images: ["images/tb16.webp", "images/tb16a.webp", "images/tb16b.webp", "images/tb16c.webp", "images/tb16d.webp"], 
+            categories: ["tote bags"], isHot: false },
         ];
 
         // Global state
@@ -1431,7 +1516,7 @@
         function renderProducts() {
             const filteredProducts = products.filter(product => {
                 const passesCategory = window.currentCategory === "All" || product.categories.includes(window.currentCategory);
-                const passesHot = window.currentCategory === "HOT" ? product.isHot : true;
+                const passesHot = window.currentCategory === "hot" ? product.isHot : true;
                 return passesCategory && passesHot;
             });
 
@@ -1607,15 +1692,28 @@
             searchPreview.classList.add('visible');
 
             window.searchTimeout = setTimeout(() => {
-                const isPrice = /^\d+$/.test(term);
-                const price = parseInt(term);
-                const results = isPrice 
-                    ? products.filter(p => p.price <= price)
-                    : products.filter(p => 
+                let results = [];
+
+                // Get currently displayed products (based on current category)
+                const currentCategoryProducts = products.filter(product => {
+                    const passesCategory = window.currentCategory === "All" || product.categories.includes(window.currentCategory);
+                    const passesHot = window.currentCategory === "hot" ? product.isHot : true;
+                    return passesCategory && passesHot;
+                });
+
+                // Check if input is a number (price filter)
+                if (/^\d+$/.test(term)) {
+                    const maxPrice = parseInt(term);
+                    results = currentCategoryProducts.filter(p => p.price <= maxPrice);
+                } else {
+                    // Text search
+                    results = currentCategoryProducts.filter(p => 
                         p.title.toLowerCase().includes(term.toLowerCase()) ||
                         p.description.toLowerCase().includes(term.toLowerCase()) ||
                         p.categories.some(c => c.toLowerCase().includes(term.toLowerCase()))
                     );
+                }
+
                 displaySearchResults(results);
             }, 300);
         }
